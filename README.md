@@ -22,11 +22,11 @@ import serviceAccountKey from './serviceAccountKey.json' assert { type: 'json' }
 // init the client for firebase storage
 const client = createClient('<firebase-project-nae>.appspot.com', serviceAccountKey);
 
-// upload to firebase
+// upload to firebase storage
 await client.upload('test.json', fs.readFileSync('./package.json'));
 console.log('upload done');
 
-// read json from firebase
+// read json from firebase storage
 console.log(await client.getJson('test.json'))
 ```
 
