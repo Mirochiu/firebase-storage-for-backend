@@ -5,7 +5,7 @@ import createClient from '@mirochiu/firebase-storage-for-backend';
 import serviceAccountKey from '../serviceAccountKey.json' assert { type: 'json' };
 
 // init the client for firebase storage
-const client = createClient('class-albums.appspot.com', serviceAccountKey);
+const client = createClient('<firebase-project-name>.appspot.com', serviceAccountKey);
 
 console.log(client.bucketName);
 

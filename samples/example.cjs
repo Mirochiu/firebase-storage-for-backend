@@ -5,7 +5,7 @@ const createClient = require('@mirochiu/firebase-storage-for-backend');
 const serviceAccountKey = require('../serviceAccountKey.json');
 
 // init the client for firebase storage
-const client = createClient('class-albums.appspot.com', serviceAccountKey);
+const client = createClient('<firebase-project-name>.appspot.com', serviceAccountKey);
 
 console.log(client.bucketName);
 
@@ -17,4 +17,4 @@ console.log(client.bucketName);
 
     // read json from firebase storage
     console.log(await client.getJson('test.json'))
-})()
+})();
