@@ -1,5 +1,5 @@
-declare module 'firebase-storage-for-backend' {
-    export declare function createClient(storageBucket: string, serviceAccountKey: Object | string): {
+declare module "@mirochiu/firebase-storage-for-backend" {
+    export function createClient(storageBucket: string, serviceAccountKey: Object | string): {
         firebaseBucket: import("@google-cloud/storage").Bucket;
         bucketName: string;
         hasFile(storagePath: string): Promise<boolean>;
