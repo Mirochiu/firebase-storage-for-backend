@@ -9,4 +9,5 @@ declare module "@mirochiu/firebase-storage-for-backend" {
         getFileUrlasync(storagePath: string): Promise<string>;
         upload(storagePath: string, content: string): Promise<import("@google-cloud/storage").File>;
     };
+    export default createClient;
 }
