@@ -1,14 +1,14 @@
 {
   "name": "@mirochiu/firebase-storage-for-backend",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a simple wrapper for firebase storage via firebase-admin",
-  "type": "module",
-  "main": "./src/index.mjs",
-  "types": "./types/index.d.mts",
+  "main": "./src/index.cjs",
+  "module": "./src/index.mjs",
+  "types": "./src/index.d.ts",
   "exports": {
     "import": "./src/index.mjs",
-    "require": "./src/index-wrapper.cjs",
-    "types": "./types/index.d.mts"
+    "require": "./src/index.cjs",
+    "types": "./src/index.d.ts"
   },
   "keywords": [
     "firebase-storage",
@@ -22,13 +22,14 @@
     "node": ">=18"
   },
   "scripts": {
-    "gen-types": "npx -p typescript tsc",
-    "test": "node samples/example.mjs"
+    "test-mjs": "node samples/example.mjs",
+    "test-cjs": "node samples/example.cjs"
   },
   "dependencies": {
     "firebase-admin": ">=12.0.0"
   },
   "repository": {
+    "type": "git",
     "url": "https://github.com/Mirochiu/firebase-storage-for-backend"
   }
 }
