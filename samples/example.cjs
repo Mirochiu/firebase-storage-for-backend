@@ -5,7 +5,8 @@ const createClient = require('@mirochiu/firebase-storage-for-backend');
 const serviceAccountKey = require('../serviceAccountKey.json');
 
 // init the client for firebase storage
-const client = createClient('<firebase-project-name>.appspot.com', serviceAccountKey);
+// FIREBASE_STORAGE_BUCKET=<firebase-project-name>.appspot.com
+const client = createClient(process.env.FIREBASE_STORAGE_BUCKET, serviceAccountKey);
 
 console.log(client.bucketName);
 

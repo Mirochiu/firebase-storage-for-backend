@@ -22,8 +22,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "test-mjs": "node samples/example.mjs",
-    "test-cjs": "node samples/example.cjs"
+    "test-mjs": "env-cmd -f .env node samples/example.mjs",
+    "test-cjs": "env-cmd -f .env node samples/example.cjs"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.11.1",
@@ -32,5 +32,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Mirochiu/firebase-storage-for-backend"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }
