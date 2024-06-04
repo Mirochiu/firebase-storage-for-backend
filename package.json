@@ -1,6 +1,6 @@
 {
   "name": "@mirochiu/firebase-storage-for-backend",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "a simple wrapper for firebase storage via firebase-admin",
   "module": "./src/index.mjs",
   "main": "./src/index.cjs",
