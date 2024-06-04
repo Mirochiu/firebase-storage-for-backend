@@ -1,14 +1,16 @@
 declare module "@mirochiu/firebase-storage-for-backend" {
-    import type { File, Bucket } from '@google-cloud/storage';
+    import type { File, Bucket, FileMetadata } from '@google-cloud/storage';
     export function createClient(storageBucket: string, serviceAccountKey: Object | string): {
         firebaseBucket: Bucket;
         bucketName: string;
-        hasFile(storagePath: string): Promise<boolean>;
-        getFile(storagePath: string): Promise<File>;
-        getText(storagePath: string): Promise<string>;
-        getJson(storagePath: string): Promise<Object>;
+        hasFile(pathOrFile: string | File): Promise<boolean>;
+        getFile(pathOrFile: string | File): Promise<File | null>;
+        getText(pathOrFile: string | File, def?: string): Promise<string | undefined>;
+        getJson(pathOrFile: string | File): Promise<Object | null>;
         getFileUrl(pathOrFile: string | File): Promise<string>;
-        upload(storagePath: string, content: string): Promise<File>;
+        upload(pathOrFile: string, content: string): Promise<File>;
+        getMetadata(pathOrFile: string | File): Promise<FileMetadata>;
+        setMetadata(pathOrFile: string | File, objOrMetadata: object | FileMetadata): Promise<FileMetadata>;
     };
     export default createClient;
 }

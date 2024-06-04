@@ -15,41 +15,57 @@ const createClient = (storageBucket, serviceAccountKey) => {
 
     const bucket = getBucket();
 
-    const hasFile = async (storagePath) => {
-        const file = bucket.file(storagePath);
+    const $f = (p, opt) => typeof p === 'string'
+        ? bucket.file(p, opt) : p;
+
+    const hasFile = async (pathOrFile) => {
+        const file = $f(pathOrFile);
         const [exists] = await file.exists();
         return exists;
     };
 
-    const getFile = async (storagePath) => {
-        const file = bucket.file(storagePath);
+    const getFile = async (pathOrFile) => {
+        const file = $f(pathOrFile);
         const [exists] = await file.exists();
         if (exists) return file;
         return null;
     };
 
-    const getText = async (storagePath) => {
-        const [contents] = await bucket.file(storagePath).download();
+    const getText = async (pathOrFile, def) => {
+        const file = await getFile(pathOrFile);
+        if (!file) return def;
+        const [contents] = await file.download();
         return contents.toString();
     };
 
-    const getJson = async (storagePath) => {
-        const content = await getText(storagePath);
+    const getJson = async (pathOrFile) => {
+        const content = await getText(pathOrFile);
+        if (!content) return null;
         return JSON.parse(content);
     };
 
     const getFileUrl = async (pathOrFile) => {
-        const file = typeof pathOrFile === 'string'
-            ? await getFile(pathOrFile)
-            : pathOrFile;
-        if (file) return await getDownloadURL(file);
-        return '';
+        const file = await getFile(pathOrFile);
+        if (!file) return '';
+        return await getDownloadURL(file);
     };
 
-    const upload = async (storagePath, content) => {
-        const file = bucket.file(storagePath);
+    const upload = async (pathOrFile, content) => {
+        const file = $f(pathOrFile);
         await file.save(content);
         return file;
+    };
+
+    const getMetadata = async (pathOrFile) => {
+        const file = await getFile(pathOrFile);
+        const [metadata] = await file.getMetadata();
+        return metadata;
+    };
+
+    const setMetadata = async (pathOrFile, objOrMetadata) => {
+        const file = await getFile(pathOrFile)
+        const [metadata] = await file.setMetadata(objOrMetadata);
+        return metadata;
     };
 
     return {
@@ -61,6 +77,8 @@ const createClient = (storageBucket, serviceAccountKey) => {
         getJson,
         getFileUrl,
         upload,
+        getMetadata,
+        setMetadata,
     };
 }
 
