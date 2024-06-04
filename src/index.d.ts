@@ -7,7 +7,7 @@ declare module "@mirochiu/firebase-storage-for-backend" {
         getFile(storagePath: string): Promise<File>;
         getText(storagePath: string): Promise<string>;
         getJson(storagePath: string): Promise<Object>;
-        getFileUrl(storagePath: string): Promise<string>;
+        getFileUrl(pathOrFile: string | File): Promise<string>;
         upload(storagePath: string, content: string): Promise<File>;
     };
     export default createClient;

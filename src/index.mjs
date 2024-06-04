@@ -38,8 +38,10 @@ export const createClient = (storageBucket, serviceAccountKey) => {
         return JSON.parse(content);
     };
 
-    const getFileUrl = async (storagePath) => {
-        const file = await getFile(storagePath);
+    const getFileUrl = async (pathOrFile) => {
+        const file = typeof pathOrFile === 'string'
+            ? await getFile(pathOrFile)
+            : pathOrFile;
         if (file) return await getDownloadURL(file);
         return '';
     };
