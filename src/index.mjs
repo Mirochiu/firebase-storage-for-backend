@@ -29,7 +29,7 @@ export const createClient = (storageBucket, serviceAccountKey) => {
     };
 
     const getText = async (storagePath) => {
-        const contents = await bucket.file(storagePath).download();
+        const [contents] = await bucket.file(storagePath).download();
         return contents.toString();
     };
 
