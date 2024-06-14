@@ -27,3 +27,10 @@ await client.setMetadata(file, {
 });
 
 console.log(JSON.stringify(await client.getMetadata(file), null, 2));
+
+const all = await client.listAllFiles();
+console.log(`${all.length} file(s) on filebase`);
+
+await client.uploadFromLocalFile('LICENSE', 'LICENSE');
+const filesList = await client.listFilesWithPrefix('LICE');
+console.log(`${filesList.length} file(s) listed, first name is ${filesList[0].name}`);

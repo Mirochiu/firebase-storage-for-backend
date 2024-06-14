@@ -68,6 +68,23 @@ export const createClient = (storageBucket, serviceAccountKey) => {
         return metadata;
     };
 
+    const listAllFiles = async () => {
+        const [files] = await bucket.getFiles()
+        return files;
+    };
+
+    const listFilesWithPrefix = async (prefix) => {
+        const config = { autoPaginate: false, delimiter: '/', prefix };
+        const [files] = await bucket.getFiles(config);
+        return files;
+    };
+
+    const uploadFromLocalFile = async (localPath, remotePath) => {
+        const config = { destination: remotePath };
+        const [files] = await bucket.upload(localPath, config);
+        return files;
+    };
+
     return {
         firebaseBucket: bucket,
         bucketName: storageBucket,
@@ -79,6 +96,9 @@ export const createClient = (storageBucket, serviceAccountKey) => {
         upload,
         getMetadata,
         setMetadata,
+        listAllFiles,
+        listFilesWithPrefix,
+        uploadFromLocalFile,
     };
 }
 

@@ -11,6 +11,9 @@ declare module "@mirochiu/firebase-storage-for-backend" {
         upload(pathOrFile: string, content: string): Promise<File>;
         getMetadata(pathOrFile: string | File): Promise<FileMetadata>;
         setMetadata(pathOrFile: string | File, objOrMetadata: object | FileMetadata): Promise<FileMetadata>;
+        listAllFiles(): File[];
+        listFilesWithPrefix(prefix: string): File[];
+        uploadFromLocalFile(localPath: string, remotePath: string): File;
     };
     export default createClient;
 }
