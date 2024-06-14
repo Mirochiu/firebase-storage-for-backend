@@ -14,6 +14,7 @@ declare module "@mirochiu/firebase-storage-for-backend" {
         listAllFiles(): Promise<File[]>;
         listFilesWithPrefix(prefix: string): Promise<File[]>;
         uploadFromLocalFile(localPath: string, remotePath: string): Promise<File>;
+        uploadLocalDirectory(localDirectory: string, remoteDirectory?: string): Promise<File[]>;
     };
     export default createClient;
 }

@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
 import { getStorage, getDownloadURL } from 'firebase-admin/storage';
+import { TransferManager } from '@google-cloud/storage';
 
 export const createClient = (storageBucket, serviceAccountKey) => {
     const getBucket = () => {
@@ -85,6 +86,13 @@ export const createClient = (storageBucket, serviceAccountKey) => {
         return files;
     };
 
+    const uploadLocalDirectory = async (localDirectory, remoteDirectory) => {
+        const config = remoteDirectory ? { prefix: remoteDirectory } : undefined;
+        const transferManager = new TransferManager(bucket);
+        const respList = await transferManager.uploadManyFiles(localDirectory, config);
+        return respList.map(r => r[0]);
+    }
+
     return {
         firebaseBucket: bucket,
         bucketName: storageBucket,
@@ -99,6 +107,7 @@ export const createClient = (storageBucket, serviceAccountKey) => {
         listAllFiles,
         listFilesWithPrefix,
         uploadFromLocalFile,
+        uploadLocalDirectory,
     };
 }
 

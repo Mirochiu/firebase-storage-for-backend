@@ -30,8 +30,12 @@ console.log(client.bucketName);
 
     const all = await client.listAllFiles();
     console.log(`${all.length} file(s) on filebase`);
-    
+
     await client.uploadFromLocalFile('LICENSE', 'LICENSE');
     const filesList = await client.listFilesWithPrefix('LICE');
     console.log(`${filesList.length} file(s) listed, first name is ${filesList[0].name}`);
+
+    const loaclDir = './sampleDir';
+    const uploadedFileInDir = await client.uploadLocalDirectory(loaclDir);
+    console.log(`${uploadedFileInDir.length} file(s) uploaded from ${loaclDir}, first name is ${uploadedFileInDir[0].name}`);
 })();
