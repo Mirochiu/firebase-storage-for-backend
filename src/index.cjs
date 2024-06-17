@@ -70,7 +70,8 @@ const createClient = (storageBucket, serviceAccountKey) => {
     };
 
     const listAllFiles = async () => {
-        const [files] = await bucket.getFiles()
+        const config = { autoPaginate: false };
+        const [files] = await bucket.getFiles(config);
         return files;
     };
 
