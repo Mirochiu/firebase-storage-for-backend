@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import createClient from '@mirochiu/firebase-storage-for-backend';
 
 // please load your service account key
-import serviceAccountKey from '../serviceAccountKey.json' assert { type: 'json' };
+import serviceAccountKey from '../serviceAccountKey.json' with {type: 'json'};
 
 // init the client for firebase storage
 // FIREBASE_STORAGE_BUCKET=<firebase-project-name>.appspot.com

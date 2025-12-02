@@ -1,6 +1,6 @@
 {
   "name": "@mirochiu/firebase-storage-for-backend",
-  "version": "0.3.12",
+  "version": "0.3.14",
   "description": "a simple wrapper for firebase storage via firebase-admin",
   "module": "./src/index.mjs",
   "main": "./src/index.cjs",
@@ -19,7 +19,7 @@
   "author": "Mirochiu (https://mirochiu.page)",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "test-mjs": "env-cmd -f .env node samples/example.mjs",
@@ -27,13 +27,13 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^7.11.1",
-    "firebase-admin": ">=12.0.0"
+    "firebase-admin": "^13.6.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Mirochiu/firebase-storage-for-backend"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^11.0.0"
   }
 }
