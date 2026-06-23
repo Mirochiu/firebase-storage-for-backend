@@ -1,12 +1,12 @@
-import admin from 'firebase-admin';
+import { getApps, initializeApp, cert } from 'firebase-admin';
 import { getStorage, getDownloadURL } from 'firebase-admin/storage';
 import { TransferManager } from '@google-cloud/storage';
 
 export const createClient = (storageBucket, serviceAccountKey) => {
     const getBucket = () => {
-        if (admin.apps.length === 0) {
-            admin.initializeApp({
-                credential: admin.credential.cert(serviceAccountKey),
+        if (getApps().length === 0) {
+            initializeApp({
+                credential: cert(serviceAccountKey),
                 storageBucket: storageBucket,
             });
         }

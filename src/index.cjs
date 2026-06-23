@@ -4,9 +4,9 @@ const { TransferManager } = require('@google-cloud/storage');
 
 const createClient = (storageBucket, serviceAccountKey) => {
     const getBucket = () => {
-        if (admin.apps.length === 0) {
+        if (admin.getApps().length === 0) {
             admin.initializeApp({
-                credential: admin.credential.cert(serviceAccountKey),
+                credential: admin.cert(serviceAccountKey),
                 storageBucket: storageBucket,
             });
         }
